@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Trip List</h1>
+
+<!-- Django requires the following for security purposes -->
+
+
+{% if activity_list %}
+   {% for activity in activity_list %}
+    <div class="card">
+        <a href="{% url 'activities_detail' activity.id %}">
+            <div class="card-content">
+                <span class="card-title">{{ activity.activity }}</span>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'activities_delete' activity.id %}">Delete</a>
+            </div>
+        </a>
+    </div>
+   {% endfor %}
+{% else %}
+    <h3>No Activities Added Yet</h3>
+{% endif %}
+
+{% endblock %}
